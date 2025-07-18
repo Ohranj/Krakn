@@ -45,7 +45,6 @@ export default {
                     <div class="w-full flex flex-col justify-between p-6">
                         <h1 class="text-2xl underline underline-offset-4 decoration-2">Welcome back</h1>
                         <form class="grow flex flex-col justify-center space-y-5" id="f_login" @submit.prevent="onLoginSubmit">
-                            
                             <div class="flex flex-col">
                                 <label>Email</label>
                                 <input v-model="forms.login.email" type="text" class="rounded-md border border-slate-400 px-2 py-1 bg-violet-100 text-black focus:outline-amber-800" placeholder="..." />

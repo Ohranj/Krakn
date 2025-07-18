@@ -10,7 +10,7 @@
     @inertiaHead
 </head>
 
-<body class="min-h-screen h-screen">
+<body class="min-h-screen h-screen font-roboto">
     @inertia('root-container')
 </body>
 
