@@ -1,6 +1,7 @@
 <script>
 import GuestLayout from '../Layouts/Guest.vue'
 import Header from '../Components/Header.vue'
+import JsonResponseHelpers from '../Helpers/JsonResponse'
 
 export default {
     components: {
@@ -8,6 +9,7 @@ export default {
     },
     data() {
         return {
+            jsonResponseHelpers: new JsonResponseHelpers(),
             forms: {
                 login: {
                     email: '',
@@ -27,6 +29,13 @@ export default {
                     'X-CSRF-TOKEN': this.csrfToken
                 }
             })
+            const json = await response.json()
+            if (!response.ok) {
+                const errors = this.jsonResponseHelpers.flattenErrors(json.errors);
+                this.forms.login.password = ''
+                console.log(errors)
+                return
+            }
             console.log(response)
         }
     },
