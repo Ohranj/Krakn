@@ -1,9 +1,10 @@
 <script>
 import AuthenticatedLayout from '../Layouts/Authenticated.vue';
+import Header from '../Components/Header.vue';
 
 export default {
     components: {
-        AuthenticatedLayout
+        AuthenticatedLayout, Header
     }
 }
 </script>
@@ -11,10 +12,10 @@ export default {
 <template>
     <AuthenticatedLayout>
         <template v-slot:nav>
-            <div></div>
+            <Header />
         </template>
         <template v-slot:content>
-            <div>Dashboard</div>
+            <div class="grow bg-indigo-200">Dashboard</div>
         </template>
     </AuthenticatedLayout>
 </template>
