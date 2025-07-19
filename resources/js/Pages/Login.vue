@@ -33,6 +33,7 @@ export default {
             })
             const json = await response.json()
             if (!response.ok) {
+                console.log(json.errors)
                 const errors = this.jsonResponseHelpers.flattenErrors(json.errors);
                 for (const x of errors) {
                     this.customEvents.showError(x)
@@ -60,7 +61,7 @@ export default {
                         <form class="grow flex flex-col justify-center space-y-5" id="f_login" @submit.prevent="onLoginSubmit">
                             <div class="flex flex-col">
                                 <label>Email</label>
-                                <input v-model="forms.login.email" type="text" class="rounded-md border border-slate-400 px-2 py-1 bg-violet-100 text-black focus:outline-amber-800" placeholder="..." />
+                                <input v-model="forms.login.email" type="email" class="rounded-md border border-slate-400 px-2 py-1 bg-violet-100 text-black focus:outline-amber-800" placeholder="..." />
                             </div>
                             <div class="flex flex-col">
                                 <label>Password</label>

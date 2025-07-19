@@ -2,14 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
+use App\Traits\JsonResponseTrait;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Http\JsonResponse;
 
 class AuthenticationController extends Controller
 {
-    public function login(LoginRequest $request)
+    use JsonResponseTrait;
+
+    public function login(LoginRequest $request): JsonResponse
     {
-        ['email' => $email, 'password' => $password] = $request->validated();
-        dd($email);
+        $isValidAttempt = Auth::attempt($request->validated());
+        if (!$isValidAttempt) {
+            //Put into laravel error?
+            $errors = [
+                'authenticate' => ['Unable to authenticate, please check and try again']
+            ];
+            return $this->respond(
+                state: false,
+                message: 'Invalid request',
+                data: [],
+                errors: $errors,
+                status: 422
+            );
+        }
+
+        $request->session()->regenerate();
+        return $this->respond(state: true, message: 'Request success', data: [], errors: []);
     }
 }

@@ -12,7 +12,7 @@ export default {
         }
     },
     methods: {
-        pushNewError(item) {
+        pushError(item) {
             this.errors.push(item.detail)
             setTimeout(() => this.errors.shift(), 7500)
         }
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-    <main class="flex flex-col h-full" id="main" @show-error="pushNewError">
+    <main class="flex flex-col h-full" id="main" @show-error="pushError">
         <Toast :errors="errors" />
         <slot name="nav" />
         <slot name="content" />
