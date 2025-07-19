@@ -41,7 +41,9 @@ export default {
                 this.forms.login.password = ''
                 return
             }
-            console.log(response)
+            setTimeout(() => {
+                location.href = '/dashboard'
+            }, 2000)
         }
     },
 }
