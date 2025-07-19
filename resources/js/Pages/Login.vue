@@ -2,6 +2,7 @@
 import GuestLayout from '../Layouts/Guest.vue'
 import Header from '../Components/Header.vue'
 import JsonResponseHelpers from '../Helpers/JsonResponse'
+import CustomEvents from '../Helpers/CustomEvents'
 
 export default {
     components: {
@@ -10,12 +11,13 @@ export default {
     data() {
         return {
             jsonResponseHelpers: new JsonResponseHelpers(),
+            customEvents: new CustomEvents(),
             forms: {
                 login: {
                     email: '',
                     password: ''
                 }
-            }
+            },
         }
     },
     methods: {
@@ -32,8 +34,10 @@ export default {
             const json = await response.json()
             if (!response.ok) {
                 const errors = this.jsonResponseHelpers.flattenErrors(json.errors);
+                for (const x of errors) {
+                    this.customEvents.showError(x)
+                }
                 this.forms.login.password = ''
-                console.log(errors)
                 return
             }
             console.log(response)
