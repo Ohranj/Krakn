@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Http\RedirectResponse;
 
 class AuthenticationController extends Controller
 {
@@ -52,5 +53,16 @@ class AuthenticationController extends Controller
         }
 
         return $bag->bag;
+    }
+
+    /**
+     * 
+     */
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

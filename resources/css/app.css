@@ -16,7 +16,7 @@
     margin: 0;
 }
 
-
+/* Transition - Slide */
 .slide-up-leave-active {
     transition: all 0.25s ease-out;
 }
@@ -31,4 +31,9 @@
 .slide-up-leave-to {
     opacity: 0;
     transform: translateY(-25px);
+}
+
+/* Transition - Collapse */
+.collapse-enter-from, .collapse-leave-to {
+  transform: scaleY(0);
 }

@@ -12,7 +12,7 @@ export default {
 <template>
     <AuthenticatedLayout>
         <template v-slot:nav>
-            <Header />
+            <Header :isAuth="true" />
         </template>
         <template v-slot:content>
             <div class="grow bg-indigo-200">Dashboard</div>
