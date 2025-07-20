@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'forename',
+        'surname',
         'email',
         'password',
     ];
@@ -41,8 +42,15 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * METHODS
+     */
+    public function fullName(): string
+    {
+        return "{$this->forename} {$this->surname}";
     }
 }

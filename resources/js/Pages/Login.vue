@@ -54,7 +54,7 @@ export default {
 <template>
     <GuestLayout>
         <template v-slot:nav>
-            <Header />
+            <Header :isAuth="false" />
         </template>
         <template v-slot:content>
             <div class="grow bg-indigo-200 p-4 flex flex-col items-center justify-center">
