@@ -31,7 +31,7 @@ export default {
 </script>
 
 <template>
-    <div class="h-[75px] bg-slate-800 text-white border-b border-slate-200">
+    <div class="min-h-[75px] bg-slate-800 text-white border-b border-slate-200">
         <div class="flex items-center w-[95%] sm:w-[80%] mx-auto h-full justify-between">
             <h1 class="font-semibold text-2xl text-orange-500">Krakn</h1>
             <div v-if="isAuth" class="text-white text-sm transition-opacity duration-750 starting:opacity-0" :id="dropdown.targetElemId">
