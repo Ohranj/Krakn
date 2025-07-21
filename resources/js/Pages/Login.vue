@@ -58,7 +58,7 @@ export default {
         </template>
         <template v-slot:content>
             <div class="grow bg-indigo-200 p-4 flex flex-col items-center justify-center">
-                <Transition name="slide-up">
+                <Transition name="slide-up" mode="out-in">
                     <div v-if="!success" class="border flex items-stretch h-[324px] w-full max-w-[850px] bg-slate-800 shadow-lg shadow-slate-600 text-white rounded-lg divide-slate-300 divide-x-2 transition-opacity duration-750 starting:opacity-0">
                         <div class="w-full hidden md:block">
                             <img :src="'/static/images/kraken-8769519_640.jpg'" class="w-full h-full rounded-l-md sepia-50" />

@@ -24,13 +24,9 @@
     transition: all 0.25s ease-out;
     transition-delay: 0.5s;
 }
-.slide-up-enter-from {
+.slide-up-enter-from, .slide-up-leave-to {
     opacity: 0;
     transform: translateY(25px);
-}
-.slide-up-leave-to {
-    opacity: 0;
-    transform: translateY(-25px);
 }
 
 /* Transition - Collapse */
