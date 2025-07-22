@@ -1,19 +1,15 @@
 <script>
 import AuthenticatedLayout from '../Layouts/Authenticated.vue';
 import Header from '../Components/Header.vue';
-import TestBuilderContainer from '../Components/TestBuilderContainer.vue';
+import TBContainer from '../Components/TestBuilder/TBContainer.vue';
 
 export default {
     props: {
         userFullName: String
     },
     components: {
-        AuthenticatedLayout, Header, TestBuilderContainer
+        AuthenticatedLayout, Header, TBContainer
     },
-    data() {
-        return {
-        }
-    }
 }
 </script>
 
@@ -23,7 +19,7 @@ export default {
             <Header :isAuth="true" :userFullName="userFullName" />
         </template>
         <template v-slot:content>
-            <div class="grow bg-indigo-200 py-8">
+            <div class="grow bg-indigo-200 py-16">
                 <div class="w-full sm:w-[80%] mx-auto h-full space-y-[150px] px-2">
                     <div>
                         <h1 class="text-xl font-semibold">My Stored Tests</h1>
@@ -49,7 +45,11 @@ export default {
                     <div>
                         <h1 class="text-xl font-semibold">Create New Test</h1>
                         <small>Use the drag and drop builder to create your test. Tests should be built with a single user in mind. Once built and saved, you will have the option to swap out static properties for dynamic properties to run your load test against.</small>
-                        <TestBuilderContainer /> 
+                        <TBContainer /> 
+                        <div class="flex justify-end gap-x-4 mt-2">
+                            <button type="button" class="cursor-pointer hover:bg-orange-600 font-semibold min-w-[75px] px-2 py-1 bg-orange-500 rounded-md shadow shadow-black text-xs">Run Test</button>
+                            <button type="button" class="cursor-pointer hover:bg-orange-600 font-semibold min-w-[75px] px-2 py-1 bg-orange-500 rounded-md shadow shadow-black text-xs">Store Test</button>
+                        </div>
                     </div>
                 </div>
             </div>
