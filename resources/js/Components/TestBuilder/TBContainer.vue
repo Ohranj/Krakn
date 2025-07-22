@@ -23,9 +23,7 @@ export default {
             },
             builder: [
                 {
-                    type: 'visit',
-                    human_type: 'Visit URL',
-                    value: 'https://example.com'
+                    ...this.stepBuilderActions['visit'],
                 }
             ]
         }
@@ -41,12 +39,18 @@ export default {
         },
         handleDrop(e) {
             const data = e.dataTransfer.getData("text");
+            const {type, human_type} = this.stepBuilderActions[data]
             const step = {
-                type: this.stepBuilderActions[data].type,
-                human_type: this.stepBuilderActions[data].human_type,
-                value: null
+                ...this.stepBuilderActions[data],
             }
             this.builder.push(step)
+        },
+        onStepMouseover(index) {
+            this.tooltip.index = index;
+            this.tooltip.show = true;
+        },
+        onStepMouseout() {
+            this.tooltip.show = false;
         }
     },
 }
@@ -89,14 +93,14 @@ export default {
         <hr class="mt-[50px] border-dashed text-white">
         <div class="mt-[50px] flex justify-center items-end lg:justify-start flex-wrap gap-x-2 gap-y-12 mx-auto">
             <template v-for="(x, index) in builder">
-                <Step :step="x" :index="index" :tooltip="tooltip">
+                <Step :step="x" :index="index" @showTooltip="onStepMouseover" @hideTooltip="onStepMouseout" :tooltip="tooltip">
                     <template v-slot:tooltip>
                         <ul class="mt-2">
+                            //DISPLAYING ONLY NECCESSARY PROPS FOR EACH STEP TYPE - ON EACH JSON KEY STORE AS RENDER PROP?
                             <li><span class="font-semibold">Type: </span><span v-text="builder[tooltip.index]?.human_type"></span></li>
-                            <template v-if="builder[tooltip.index]?.value">
-                                <li><span class="font-semibold">Value: </span><span v-text="builder[tooltip.index]?.value"></span></li>
-                            </template>
-                            <template v-else>
+                            <li><span class="font-semibold">Value: </span><span v-text="builder[tooltip.index]?.value"></span></li>
+                            <li v-if="builder[tooltip.index].hasOwnProperty('input_type')"><span class="font-semibold">Input: </span><span v-text="builder[tooltip.index]?.human_input_type"></span></li>
+                            <template v-if="!builder[tooltip.index]?.complete">
                                 <small class="text-red-500 absolute left-2 top-2 font-semibold">** Step requires completion **</small>
                                 <small>...</small>
                             </template>

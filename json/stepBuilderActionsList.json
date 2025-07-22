@@ -1,26 +1,40 @@
 {
     "visit": {
         "type": "visit",
-        "human_type": "Visit URl"
+        "human_type": "Visit URl",
+        "complete": false,
+        "value": null
     },
     "query": {
         "type": "query",
-        "human_type": "Query DOM Element"
+        "human_type": "Query DOM Element",
+        "complete": false,
+        "value": null
     },
     "click": {
         "type": "click",
-        "human_type": "Click DOM Element"
+        "human_type": "Click DOM Element",
+        "complete": true,
+        "value": "See previous step"
     },
     "input": {
         "type": "input",
-        "human_type": "Action DOM Input"
+        "human_type": "Action DOM Input",
+        "complete": false,
+        "value": null,
+        "input_type": null,
+        "human_input_type": null
     },
     "sleep": {
         "type": "sleep",
-        "human_type": "Sleep"
+        "human_type": "Sleep",
+        "complete": false,
+        "value": null
     },
     "screensaver": {
         "type": "screensaver",
-        "human_type": "Screensaver"
+        "human_type": "Screensaver",
+        "complete": true,
+        "value": "N/A"
     }
 }
