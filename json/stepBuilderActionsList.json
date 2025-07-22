@@ -1,0 +1,26 @@
+{
+    "visit": {
+        "type": "visit",
+        "human_type": "Visit URl"
+    },
+    "query": {
+        "type": "query",
+        "human_type": "Query DOM Element"
+    },
+    "click": {
+        "type": "click",
+        "human_type": "Click DOM Element"
+    },
+    "input": {
+        "type": "input",
+        "human_type": "Action DOM Input"
+    },
+    "sleep": {
+        "type": "sleep",
+        "human_type": "Sleep"
+    },
+    "screensaver": {
+        "type": "screensaver",
+        "human_type": "Screensaver"
+    }
+}

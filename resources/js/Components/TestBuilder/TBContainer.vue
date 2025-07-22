@@ -9,6 +9,9 @@ import Pen from '../svg/Pen.vue'
 import Step from './Step.vue';
 
 export default {
+    props: {
+        stepBuilderActions: Object
+    },
     components: {
         DragButton, Url, Click, Pause, Camera, Search, Pen, Step
     },
@@ -17,32 +20,6 @@ export default {
             tooltip: {
                 show: false,
                 index: 0,
-            },
-            actions: {
-                'visit': {
-                    type: 'visit',
-                    human_type: 'Visit URL'
-                }, 
-                'query': {
-                    type: 'query',
-                    human_type: 'Query DOM Element'
-                }, 
-                'click': {
-                    type: 'click',
-                    human_type: 'Click DOM Element'
-                }, 
-                'input': {
-                    type: 'input',
-                    human_type: 'Action DOM Input'
-                }, 
-                'sleep': {
-                    type: 'sleep',
-                    human_type: 'Sleep'
-                }, 
-                'screensaver': {
-                    type: 'screensaver',
-                    human_type: 'Screensaver'
-                }
             },
             builder: [
                 {
@@ -65,12 +42,11 @@ export default {
         handleDrop(e) {
             const data = e.dataTransfer.getData("text");
             const step = {
-                type: this.actions[data].type,
-                human_type: this.actions[data].human_type,
+                type: this.stepBuilderActions[data].type,
+                human_type: this.stepBuilderActions[data].human_type,
                 value: null
             }
             this.builder.push(step)
-            console.log('Need an easy way of linking a human name to the type')
         }
     },
 }
