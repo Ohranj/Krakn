@@ -1,20 +1,20 @@
 <script>
 export default {
     props: {
-        human_type: String,
-        type: String,
+        action: Object
     },
     methods: {
         onDragStart(e, type) {
-            e.dataTransfer.setData('text', type)
+            const transferKey = type.complete ? 'completed' : 'incomplete'
+            e.dataTransfer.setData(transferKey, JSON.stringify(type))
         }
     }
 }
 </script>
 
 <template>
-    <button class="w-[160px] text-sm md:text-base sm:w-[205px] cursor-pointer font-semibold bg-white rounded-md p-2 border hover:bg-slate-200 relative" draggable="true" @dragstart.stop="onDragStart($event, type)">
-        <span v-text="human_type"></span>
+    <button class="w-[160px] text-sm md:text-base sm:w-[205px] cursor-pointer font-semibold bg-white rounded-md p-2 border hover:bg-slate-200 relative" draggable="true" @dragstart.stop="onDragStart($event, action)">
+        <span v-text="action['human_type']"></span>
         <span class="absolute top-1 right-1">
             <slot name="icon" />
         </span>

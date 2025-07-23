@@ -25,24 +25,25 @@ export default {
                 {
                     ...this.stepBuilderActions['visit'],
                 }
-            ]
+            ],
         }
     },
     methods: {
-        onDragOver(elem) {
-            elem.classList.remove('bg-slate-100')
-            elem.classList.add('bg-yellow-300')
+        onDragOver({dataTransfer, target, ...rest}) {
+            const data = dataTransfer.types[0];
+            target.classList.remove('bg-slate-100')
+            data == 'completed' 
+                ? target.classList.add('bg-orange-300')
+                : target.classList.add('bg-yellow-300')
         },
-        onDragLeave(elem) {
-            elem.classList.remove('bg-yellow-300')
-            elem.classList.add('bg-slate-100')
+        onDragLeave({target, ...rest}) {
+            target.classList.remove('bg-orange-300')
+            target.classList.remove('bg-yellow-300')
+            target.classList.add('bg-slate-100')
         },
-        handleDrop(e) {
-            const data = e.dataTransfer.getData("text");
-            const {type, human_type} = this.stepBuilderActions[data]
-            const step = {
-                ...this.stepBuilderActions[data],
-            }
+        handleDrop({dataTransfer, ...rest}) {
+            const data = dataTransfer.getData(dataTransfer.types[0]);
+            const step = JSON.parse(data)
             this.builder.push(step)
         },
         onStepMouseover(index) {
@@ -59,32 +60,32 @@ export default {
 <template>
     <div class="border bg-slate-800 min-h-[450px] sm:min-h-[300px] rounded-md mt-2 p-8 shadow shadow-black">
         <div class="flex items-center justify-center lg:justify-start flex-wrap gap-5 mx-auto">
-            <DragButton human_type="Visit URL" type="visit">
+            <DragButton :action="stepBuilderActions['visit']">
                 <template v-slot:icon>
                     <Url class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton human_type="Query DOM Element" type="query">
+            <DragButton :action="stepBuilderActions['query']">
                 <template v-slot:icon>
                     <Search class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton human_type="Click DOM Element" type="click">
+            <DragButton :action="stepBuilderActions['click']">
                 <template v-slot:icon>
                     <Click class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton human_type="Action DOM Input" type="input">
+            <DragButton :action="stepBuilderActions['input']">
                 <template v-slot:icon>
                     <Pen class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton human_type="Sleep" type="sleep">
+            <DragButton :action="stepBuilderActions['sleep']">
                 <template v-slot:icon>
                     <Pause class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton human_type="Screenshot" type="screensaver">
+            <DragButton :action="stepBuilderActions['screensaver']">
                 <template v-slot:icon>
                     <Camera class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
@@ -96,7 +97,6 @@ export default {
                 <Step :step="x" :index="index" @showTooltip="onStepMouseover" @hideTooltip="onStepMouseout" :tooltip="tooltip">
                     <template v-slot:tooltip>
                         <ul class="mt-2">
-                            //DISPLAYING ONLY NECCESSARY PROPS FOR EACH STEP TYPE - ON EACH JSON KEY STORE AS RENDER PROP?
                             <li><span class="font-semibold">Type: </span><span v-text="builder[tooltip.index]?.human_type"></span></li>
                             <li><span class="font-semibold">Value: </span><span v-text="builder[tooltip.index]?.value"></span></li>
                             <li v-if="builder[tooltip.index].hasOwnProperty('input_type')"><span class="font-semibold">Input: </span><span v-text="builder[tooltip.index]?.human_input_type"></span></li>
@@ -110,7 +110,7 @@ export default {
             </template>
             <div>
                 <div class="flex items-center gap-x-2">
-                    <button class="w-[205px] cursor-pointer border border-dashed border-black rounded-md p-2 shadow shadow-black bg-slate-100 font-semibold" @dragover.prevent="onDragOver($event.target)" @dragleave.stop="onDragLeave($event.target)" @drop.prevent="handleDrop($event);onDragLeave($event.target)">Drop Step Here</button>
+                    <button class="w-[205px] cursor-pointer border border-dashed border-black rounded-md p-2 shadow shadow-black bg-slate-100 font-semibold" @dragover.prevent="onDragOver($event)" @dragleave.stop="onDragLeave($event)" @drop.prevent="handleDrop($event);onDragLeave($event)">Drop Step Here</button>
                 </div>
             </div>
         </div>
