@@ -3,6 +3,7 @@ import Chevron from '../Components/svg/Chevron.vue'
 import CustomEvents from '../Helpers/CustomEvents'
 import Logout from '../Components/svg/Logout.vue'
 import Avatar from '../Components/svg/Avatar.vue'
+import Box from '../Components/svg/Box.vue'
 
 export default {
     props: {
@@ -10,7 +11,7 @@ export default {
         userFullName: String
     },
     components: {
-        Chevron, Logout, Avatar
+        Chevron, Logout, Avatar, Box
     },
     data() {
         return {
@@ -46,6 +47,10 @@ export default {
                                 <li class="cursor-pointer p-2 flex items-center gap-x-1 hover:bg-slate-200 rounded-t-md">
                                     <Avatar class="w-6 h-6" stroke="#000000" fill="none" />
                                     <span>My Profile</span>
+                                </li>
+                                <li class="cursor-pointer p-2 flex items-center gap-x-1 hover:bg-slate-200 rounded-t-md">
+                                    <Box class="w-6 h-6" stroke="#000000" fill="none" />
+                                    <span>My Sheets</span>
                                 </li>
                                 <hr class="border-dashed">
                                 <li class="rounded-b-md bg-red-100 hover:bg-red-200">

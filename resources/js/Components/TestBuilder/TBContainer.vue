@@ -32,16 +32,20 @@ export default {
         onDragOver({dataTransfer, target, ...rest}) {
             const data = dataTransfer.types[0];
             target.classList.remove('bg-slate-100')
+            target.classList.add('scale-y-[1.3]')
+            target.classList.add('scale-x-[1.05]')
             data == 'completed' 
                 ? target.classList.add('bg-orange-300')
                 : target.classList.add('bg-yellow-300')
         },
         onDragLeave({target, ...rest}) {
+            target.classList.remove('scale-y-[1.3]')
+            target.classList.remove('scale-x-[1.05]')
             target.classList.remove('bg-orange-300')
             target.classList.remove('bg-yellow-300')
             target.classList.add('bg-slate-100')
         },
-        handleDrop({dataTransfer, ...rest}) {
+        handleDropNew({dataTransfer, ...rest}) {
             const data = dataTransfer.getData(dataTransfer.types[0]);
             const step = JSON.parse(data)
             this.builder.push(step)
@@ -85,7 +89,7 @@ export default {
                     <Pause class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton :action="stepBuilderActions['screensaver']">
+            <DragButton :action="stepBuilderActions['screenshot']">
                 <template v-slot:icon>
                     <Camera class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
@@ -101,7 +105,7 @@ export default {
                             <li><span class="font-semibold">Value: </span><span v-text="builder[tooltip.index]?.value"></span></li>
                             <li v-if="builder[tooltip.index].hasOwnProperty('input_type')"><span class="font-semibold">Input: </span><span v-text="builder[tooltip.index]?.human_input_type"></span></li>
                             <template v-if="!builder[tooltip.index]?.complete">
-                                <small class="text-red-500 absolute left-2 top-2 font-semibold">** Step requires completion **</small>
+                                <small class="text-red-500 absolute left-2 top-2 font-semibold">** Step requires configuring **</small>
                                 <small>...</small>
                             </template>
                         </ul>
@@ -109,8 +113,8 @@ export default {
                 </Step>
             </template>
             <div>
-                <div class="flex items-center gap-x-2">
-                    <button class="w-[205px] cursor-pointer border border-dashed border-black rounded-md p-2 shadow shadow-black bg-slate-100 font-semibold" @dragover.prevent="onDragOver($event)" @dragleave.stop="onDragLeave($event)" @drop.prevent="handleDrop($event);onDragLeave($event)">Drop Step Here</button>
+                <div class="flex items-end gap-x-2">
+                    <button class="w-[205px] border border-dashed border-black rounded-md p-2 shadow shadow-black bg-slate-100 font-semibold" @dragover.prevent="onDragOver($event)" @dragleave.stop="onDragLeave($event)" @drop.prevent="handleDropNew($event);onDragLeave($event)">Append Step</button>
                 </div>
             </div>
         </div>

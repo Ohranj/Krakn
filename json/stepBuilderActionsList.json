@@ -1,7 +1,7 @@
 {
     "visit": {
         "type": "visit",
-        "human_type": "Visit URl",
+        "human_type": "Visit URL",
         "complete": false,
         "value": null
     },
@@ -31,9 +31,9 @@
         "complete": false,
         "value": null
     },
-    "screensaver": {
-        "type": "screensaver",
-        "human_type": "Screensaver",
+    "screenshot": {
+        "type": "screenshot",
+        "human_type": "Screenshot",
         "complete": true,
         "value": "N/A"
     }
