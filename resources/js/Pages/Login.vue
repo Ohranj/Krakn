@@ -57,9 +57,9 @@ export default {
             <Header :isAuth="false" />
         </template>
         <template v-slot:content>
-            <div class="grow bg-indigo-200 p-4 flex flex-col items-center justify-center">
+            <div class="grow bg-indigo-50 p-4 flex flex-col items-center justify-center">
                 <Transition name="slide-up" mode="out-in">
-                    <div v-if="!success" class="border flex items-stretch h-[324px] w-full max-w-[850px] bg-slate-800 shadow-lg shadow-slate-600 text-white rounded-lg divide-slate-300 divide-x-2 transition-opacity duration-750 starting:opacity-0">
+                    <div v-if="!success" class="border border-slate-300 flex items-stretch h-[324px] w-full max-w-[850px] shadow-lg shadow-slate-600 rounded-lg divide-slate-300 divide-x-2 transition-opacity duration-750 starting:opacity-0">
                         <div class="w-full hidden md:block">
                             <img :src="'/static/images/kraken-8769519_640.jpg'" class="w-full h-full rounded-l-md sepia-50" />
                         </div>
@@ -68,18 +68,18 @@ export default {
                             <form class="grow flex flex-col justify-center space-y-5" id="f_login" @submit.prevent="onLoginSubmit">
                                 <div class="flex flex-col">
                                     <label>Email</label>
-                                    <input v-model="forms.login.email" type="email" class="rounded-md border border-slate-400 px-2 py-1 bg-violet-100 text-black focus:outline-amber-800" placeholder="..." />
+                                    <input v-model="forms.login.email" type="email" class="rounded-md border border-slate-400 px-2 py-1 bg-violet-100 text-black focus:outline-indigo-800" placeholder="..." />
                                 </div>
                                 <div class="flex flex-col">
                                     <label>Password</label>
-                                    <input v-model="forms.login.password" type="password" class="rounded-md border border-slate-400 px-2 py-1 bg-violet-100 text-black focus:outline-amber-800" placeholder="..." />
+                                    <input v-model="forms.login.password" type="password" class="rounded-md border border-slate-400 px-2 py-1 bg-violet-100 text-black focus:outline-indigo-800" placeholder="..." />
                                 </div>
                             </form>
-                            <button type="submit" form="f_login" class="font-semibold bg-orange-500 px-2 py-1 text-sm min-w-[105px] rounded-md hover:bg-orange-600 cursor-pointer mx-auto">Sign In</button>
+                            <button type="submit" form="f_login" class="font-semibold bg-indigo-600 px-2 py-1 text-sm min-w-[105px] rounded-md hover:bg-indigo-700 cursor-pointer mx-auto text-white">Sign In</button>
                         </div>
                     </div>
                     <div v-else="success" role="status" class="flex flex-col items-center space-y-2">
-                        <spinner class="w-10 h-10 text-slate-500 animate-spin fill-amber-600" fill="none" />
+                        <spinner class="w-10 h-10 text-slate-500 animate-spin fill-indigo-700" fill="none" />
                         <span>Loading...</span>
                     </div>
                 </Transition>

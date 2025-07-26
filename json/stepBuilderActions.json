@@ -3,24 +3,28 @@
         "type": "visit",
         "human_type": "Visit URL",
         "complete": false,
+        "editable": true,
         "value": null
     },
     "query": {
         "type": "query",
         "human_type": "Query DOM Element",
         "complete": false,
+        "editable": true,
         "value": null
     },
     "click": {
         "type": "click",
         "human_type": "Click DOM Element",
         "complete": true,
+        "editable": true,
         "value": "See previous step"
     },
     "input": {
         "type": "input",
         "human_type": "Action DOM Input",
         "complete": false,
+        "editable": true,
         "value": null,
         "input_type": null,
         "human_input_type": null
@@ -28,13 +32,15 @@
     "sleep": {
         "type": "sleep",
         "human_type": "Sleep",
-        "complete": false,
-        "value": null
+        "complete": true,
+        "editable": true,
+        "value": 3
     },
     "screenshot": {
         "type": "screenshot",
         "human_type": "Screenshot",
         "complete": true,
+        "editable": false,
         "value": "N/A"
     }
 }

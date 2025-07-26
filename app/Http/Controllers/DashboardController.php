@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        $builderActionsJson = file_get_contents('../json/stepBuilderActionsList.json');
+        $builderActionsJson = file_get_contents('../json/stepBuilderActions.json');
         return Inertia::render('Dashboard', [
             'stepBuilderActions' => json_decode($builderActionsJson)
         ]);

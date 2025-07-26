@@ -17,6 +17,7 @@ export default {
     },
     data() {
         return {
+            isDragging: false,
             tooltip: {
                 show: false,
                 index: 0,
@@ -29,19 +30,22 @@ export default {
         }
     },
     methods: {
+        toggleIsDraggingState() {
+            this.isDragging = !this.isDragging
+        },
         onDragOver({dataTransfer, target, ...rest}) {
             const data = dataTransfer.types[0];
             target.classList.remove('bg-slate-100')
             target.classList.add('scale-y-[1.3]')
             target.classList.add('scale-x-[1.05]')
             data == 'completed' 
-                ? target.classList.add('bg-orange-300')
+                ? target.classList.add('bg-indigo-300')
                 : target.classList.add('bg-yellow-300')
         },
         onDragLeave({target, ...rest}) {
             target.classList.remove('scale-y-[1.3]')
             target.classList.remove('scale-x-[1.05]')
-            target.classList.remove('bg-orange-300')
+            target.classList.remove('bg-indigo-300')
             target.classList.remove('bg-yellow-300')
             target.classList.add('bg-slate-100')
         },
@@ -64,32 +68,32 @@ export default {
 <template>
     <div class="border bg-slate-800 min-h-[450px] sm:min-h-[300px] rounded-md mt-2 p-8 shadow shadow-black">
         <div class="flex items-center justify-center lg:justify-start flex-wrap gap-5 mx-auto">
-            <DragButton :action="stepBuilderActions['visit']">
+            <DragButton :action="stepBuilderActions['visit']" @isDraggingState="toggleIsDraggingState">
                 <template v-slot:icon>
                     <Url class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton :action="stepBuilderActions['query']">
+            <DragButton :action="stepBuilderActions['query']" @isDraggingState="toggleIsDraggingState">
                 <template v-slot:icon>
                     <Search class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton :action="stepBuilderActions['click']">
+            <DragButton :action="stepBuilderActions['click']" @isDraggingState="toggleIsDraggingState">
                 <template v-slot:icon>
                     <Click class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton :action="stepBuilderActions['input']">
+            <DragButton :action="stepBuilderActions['input']" @isDraggingState="toggleIsDraggingState">
                 <template v-slot:icon>
                     <Pen class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton :action="stepBuilderActions['sleep']">
+            <DragButton :action="stepBuilderActions['sleep']" @isDraggingState="toggleIsDraggingState">
                 <template v-slot:icon>
                     <Pause class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>
             </DragButton>
-            <DragButton :action="stepBuilderActions['screenshot']">
+            <DragButton :action="stepBuilderActions['screenshot']" @isDraggingState="toggleIsDraggingState">
                 <template v-slot:icon>
                     <Camera class="w-4 h-4" stroke="#000000" fill="none" />
                 </template>

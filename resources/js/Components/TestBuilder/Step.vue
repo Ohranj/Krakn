@@ -50,7 +50,7 @@ export default {
             <p v-text="index + 1"></p>
         </div>
         <div class="flex items-center gap-x-2">
-            <button class="w-[205px] cursor-pointer border border-white rounded-md p-2 shadow shadow-black font-semibold" :class="step.complete ? 'bg-orange-500 hover:bg-orange-600' : 'bg-yellow-300 hover:bg-yellow-400'" v-text="step.human_type" @mouseover="onMouseover(index)" @mouseout="onMouseout('hideTooltip')" @dragover.prevent="onDragOver()"></button>
+            <button class="w-[175px] cursor-pointer border border-white rounded-md p-2 shadow shadow-black font-semibold" :class="step.complete ? 'bg-indigo-600 hover:bg-indigo-700 text-white' : 'bg-yellow-300 hover:bg-yellow-400'" v-text="step.human_type" @mouseover="onMouseover(index)" @mouseout="onMouseout('hideTooltip')" @dragover.prevent="onDragOver()"></button>
             <ArrowLong class="w-10 h-10" stroke="#FFFFFF" fill="none" />
         </div>
         <div v-show="tooltip.show && tooltip.index == index" class="z-20 border bg-white min-w-[250px] max-w-[275px] min-h-[50px] rounded-md absolute text-black shadow shadow-black p-4 text-sm text-ellipsis overflow-hidden whitespace-nowrap translate-x-[30%] translate-y-[-150%]">
